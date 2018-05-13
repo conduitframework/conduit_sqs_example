@@ -1,21 +1,33 @@
 # ConduitSqsExample
 
-**TODO: Add description**
+Example App that uses [Conduit](https://github.com/conduitframework/conduit) and [ConduitSQS](https://github.com/conduitframework/conduit_sqs).
 
-## Installation
+## Running
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `conduit_sqs_example` to your list of dependencies in `mix.exs`:
+You should can run the project by doing:
 
-```elixir
-def deps do
-  [
-    {:conduit_sqs_example, "~> 0.1.0"}
-  ]
-end
+``` bash
+export AWS_ACCESS_KEY_ID=YOUR_AWS_ACCESS_KEY_ID
+export AWS_SECRET_ACCESS_KEY=YOUR_AWS_SECRET_ACCESS_KEY
+iex -S mix run
 ```
 
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at [https://hexdocs.pm/conduit_sqs_example](https://hexdocs.pm/conduit_sqs_example).
+You should see logs mentioning that it has created the `message` and `message-error` queue at startup.
 
+```
+22:28:46.712 [info]  SQS Adapter started!
+22:28:46.723 [info]  Declaring queue message
+22:28:47.062 [info]  Declaring queue message-error
+```
+
+Once you have an iex prompt, you can send a message by doing:
+
+``` elixir
+import Conduit.Message
+alias Conduit.Message
+alias ConduitSqsExampleQueue.Broker
+
+message = put_body(%Message{}, %{"my" => "message"})
+
+Broker.publish(:message, message)
+```
