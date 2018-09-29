@@ -7,8 +7,8 @@ Example App that uses [Conduit](https://github.com/conduitframework/conduit) and
 You should can run the project by doing:
 
 ``` bash
-export AWS_ACCESS_KEY_ID=YOUR_AWS_ACCESS_KEY_ID
-export AWS_SECRET_ACCESS_KEY=YOUR_AWS_SECRET_ACCESS_KEY
+export ACCESS_KEY_ID=YOUR_AWS_ACCESS_KEY_ID
+export SECRET_ACCESS_KEY=YOUR_AWS_SECRET_ACCESS_KEY
 iex -S mix run
 ```
 
@@ -29,5 +29,5 @@ alias ConduitSqsExampleQueue.Broker
 
 message = put_body(%Message{}, %{"my" => "message"})
 
-Broker.publish(:message, message)
+Broker.publish(message, :message)
 ```

@@ -22,7 +22,7 @@ defmodule ConduitSqsExample.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:conduit, "~> 0.11.0"},
+      {:conduit, "~> 0.12.0"},
       {:conduit_sqs, "~> 0.2"}
     ]
   end
